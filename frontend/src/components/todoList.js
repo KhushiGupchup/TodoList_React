@@ -33,8 +33,8 @@ const TodoList = ({ newTask, onEdit, onDelete, onInfo }) => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await fetch("https://todolist-react-o42k.onrender.com/api/getalltodos
-");//backend API to to fetch all data
+        const response = await fetch("https://todolist-react-o42k.onrender.com/api/getalltodos"); // backend API
+
         const data = await response.json();
         if (response.ok) setTodos(data);
       } catch (err) {
@@ -121,4 +121,5 @@ const TodoList = ({ newTask, onEdit, onDelete, onInfo }) => {
 };
 
 export default TodoList;
+
 
