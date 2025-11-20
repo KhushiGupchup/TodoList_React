@@ -7,7 +7,7 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/api/deletetasktodo/${taskId}`,
+        `https://todolist-react-o42k.onrender.com/api/deletetasktodo/${taskId}`,
         { method: "DELETE" }
       );
 
@@ -37,3 +37,4 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
 };
 
 export default DeleteModal;
+
