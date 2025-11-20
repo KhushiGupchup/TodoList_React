@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  position: fixed;
+  top:10px;
+  right: 5%;
+  
+}
+
+h1 {
+  color: #6A0DAD;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* Card */
+.taskform {
+  width: 360px;
+  background-color: #ffffff;
+  padding: 28px 25px;
+  border-radius: 18px;
+  border: 1px solid #e8d7ff;
+  box-shadow: 0 6px 20px rgba(106, 13, 173, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.taskform input,
+.taskform select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #c7aef3;
+  background-color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+
+.taskform input:focus,
+.taskform select:focus {
+  border-color: #7B2CBF;
+  box-shadow: 0 0 6px rgba(123, 44, 191, 0.45);
+}
+
+/* Button */
+.Addtask {
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  border-radius: 12px;
+  background-color: #7B2CBF;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.Addtask:hover {
+  background-color: #6A21A8;
+  transform: translateY(-3px);
+}

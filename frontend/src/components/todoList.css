@@ -1,0 +1,148 @@
+body {
+  background: linear-gradient(to bottom right, #f7f1ff, #faf5ff);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.todo-details {
+  width: 100%;
+  background-color: #ab6ff342;
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 6px 16px rgba(139, 76, 216, 0.18);
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  border: 1px solid #eee3ff;
+  box-shadow: 0 4px 15px rgba(155, 91, 255, 0.08);
+  transition: 0.25s ease;
+  gap: 40px;
+}
+
+.todo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(155, 91, 255, 0.15);
+}
+
+.todo-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.todo-left h4 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #5924b1;
+  font-weight: 700;
+}
+.todo-details > h2{
+  color: #5924b1;
+}
+
+.todo-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.statusinfo {
+  flex-shrink: 0;
+}
+
+.dates {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.dates p {
+  margin: 0;
+  color: #7e59c5;
+  font-size: 0.9rem;
+}
+
+.status {
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  min-width: 110px;
+  text-align: center;
+}
+
+.status.pending {
+  background-color: #ead8ff;
+  color: #6a1fbf;
+}
+
+.status.in-progress {
+  background-color: #d9eaff;
+  color: #115da8;
+}
+
+.status.completed {
+  background-color: #ffdce6;
+  color: #c2185b;
+}
+
+.card-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.card-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+
+.card-btn:hover {
+  background-color: rgba(106, 31, 191, 0.12);
+  transform: scale(1.15);
+}
+
+.edit-btn {
+  color: #6a1fbf;
+}
+
+.delete-btn {
+  color: #e74c3c;
+}
+
+.info-btn {
+  color: #FF6B6B;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .todo-info {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .dates {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

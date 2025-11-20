@@ -1,0 +1,51 @@
+html, body, #root {
+  height: 100%;
+  background-color: #F4ECFF; /* lavender */
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* padding: 30px; */
+  min-height: 100%;
+}
+
+.todo {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  align-items: flex-start;
+  flex-wrap: wrap;
+ 
+}
+
+.left {
+  flex:1;
+  min-width: 300px;
+}
+
+.right {
+ width: 30%;
+  min-width: 280px;
+  position: relative;
+}
+body {
+  background-color: #FFFBEB; /* Pale Peach/Cream */
+  font-family: 'Segoe UI', sans-serif;
+  color: #6B4633; /* Text color */
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .todo {
+    flex-direction: column;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+}
