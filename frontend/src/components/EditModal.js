@@ -20,32 +20,30 @@ function EditModal({ isOpen, onClose, task, onSave }) {
     return null
   }
 
-  const handleSave = async () => {
-    try {
-      const res = await fetch(
-        "https://todolist-react-o42k.onrender.com/api/updatetasktodo/" + (task._id || task.id),
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            taskname: taskname,
-            taskStatus: status
-          })
-        }
-      )
+const handleSave = async () => {
+  try {
+    // API call to update the task using Axios
+    const res = await axios.put(
+      "https://todolist-react-o42k.onrender.com/api/updatetasktodo/" + (task._id || task.id),
+      {
+        taskname: taskname,
+        taskStatus: status
+      }
+    );
 
-      const updated = await res.json()
-      onSave(updated)     // send updates
-      toast.success('Task updated Successfully');
-     
-      onClose()           // close it
+    // Axios automatically parses JSON, so use res.data
+    const updated = res.data;
 
-    } catch (e) {
-      console.log("couldn't update task:", e)
-    }
+    onSave(updated);     // send updates
+    toast.success('Task updated Successfully');
+   
+    onClose();           // close it
+
+  } catch (e) {
+    console.log("couldn't update task:", e);
   }
+};
+
 
   return (
     <div className="modal-overlay">
@@ -79,6 +77,7 @@ function EditModal({ isOpen, onClose, task, onSave }) {
 }
 
 export default EditModal
+
 
 
 
