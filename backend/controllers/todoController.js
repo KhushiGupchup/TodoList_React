@@ -1,5 +1,6 @@
 // controllers/todoController.js
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
+
 const Todo = require("../models/todoModel");
 
 //Get All Tasks
@@ -76,4 +77,5 @@ exports.deleteTask = async (req,res) =>{
 
 
 }
+
 
