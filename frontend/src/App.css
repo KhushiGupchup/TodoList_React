@@ -190,7 +190,7 @@
     min-width: 90px;
     text-align: center;
     flex-shrink: 0;
-    margin-top: 25px;
+    margin-top: 14px;
 }
   .status-info  strong{
     font-size: 0.8rem;
@@ -242,7 +242,7 @@
   }
   .info-modal-box{
     width: 95vw;
-    height: 50vh;
+    height: 55vh;
     padding: 15px;
   }
   .info-modal-box p{
@@ -256,9 +256,16 @@
   }
   .modal-box{
     padding: 6px;
+    gap:6px;
   }
   .modal-overlay{
     padding: 6px;
+  }
+  .modal-box p{
+    color: #00000099;
+  }
+  .modal-box h2{
+    color:#5924b1;
   }
 }
 
