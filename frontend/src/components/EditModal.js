@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import "./modal.css"
 import toast from 'react-hot-toast';
+import axios from "axios";
 
 function EditModal({ isOpen, onClose, task, onSave }) {
 
@@ -78,5 +79,6 @@ function EditModal({ isOpen, onClose, task, onSave }) {
 }
 
 export default EditModal
+
 
 
