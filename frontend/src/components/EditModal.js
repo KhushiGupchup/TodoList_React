@@ -22,7 +22,7 @@ function EditModal({ isOpen, onClose, task, onSave }) {
   const handleSave = async () => {
     try {
       const res = await fetch(
-        "http://localhost:4000/api/updatetasktodo/" + (task._id || task.id),
+        "https://todolist-react-o42k.onrender.com/api/updatetasktodo/" + (task._id || task.id),
         {
           method: "PUT",
           headers: {
@@ -78,4 +78,5 @@ function EditModal({ isOpen, onClose, task, onSave }) {
 }
 
 export default EditModal
+
 
