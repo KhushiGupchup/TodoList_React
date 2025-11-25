@@ -7,25 +7,23 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
   if (!isOpen || !taskId) return null;
 
   const handleDelete = async () => {
-    try {
-      const response = await fetch(
-        `https://todolist-react-o42k.onrender.com/api/deletetasktodo/${taskId}`,
-        { method: "DELETE" }
-      );
+  try {
+    // API call to delete the task using Axios
+    const response = await axios.delete(
+      `https://todolist-react-o42k.onrender.com/api/deletetasktodo/${taskId}`
+    );
 
-      if (response.ok) {
-        onDelete(taskId); // remove from list
-        toast.success('Task deleted Successfully');
-        
-        onClose();
-        
-      } else {
-        console.error("Delete failed");
-      }
-    } catch (error) {
-      console.error("Error deleting:", error);
-    }
-  };
+    // here the task delete by its id
+    onDelete(taskId); // remove from list
+    toast.success('Task deleted Successfully');
+
+    onClose(); // close modal
+
+  } catch (error) {
+    console.error("Error deleting:", error);
+  }
+};
+
 
   return (
     <div className="modal-overlay">
@@ -43,6 +41,7 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
 };
 
 export default DeleteModal;
+
 
 
 
