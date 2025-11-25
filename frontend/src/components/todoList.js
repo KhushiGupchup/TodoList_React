@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./todoList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 /* Takes a date and converts it into:day-month-year */
 const formatDate = (d) => {
@@ -34,14 +35,15 @@ const TodoList = ({ newTask, onEdit, onDelete, onInfo }) => {
   /* Fetches all tasks from  backend
     Saves them into todos */
   useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const response = await fetch("https://todolist-react-o42k.onrender.com/api/getalltodos");//backend API to to fetch all data
-        const data = await response.json();
-        if (response.ok) setTodos(data);
-      } catch (err) {
-        console.error("Error fetching todos:", err);
-      }
+   const fetchTodos = async () => {
+  try {
+    const response = await axios.get("https://todolist-react-o42k.onrender.com/api/getalltodos");
+    setTodos(response.data);
+  } catch (err) {
+    console.error("Error fetching todos:", err);
+  }
+};
+
     };
     fetchTodos();
   }, []);
@@ -151,4 +153,5 @@ const TodoList = ({ newTask, onEdit, onDelete, onInfo }) => {
 };
 
 export default TodoList;
+
 
