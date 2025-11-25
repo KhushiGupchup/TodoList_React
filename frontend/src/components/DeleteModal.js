@@ -1,6 +1,7 @@
 import React from "react";
 import "./modal.css";
 import toast from 'react-hot-toast';
+import axios from "axios";
 
 const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
   if (!isOpen || !taskId) return null;
@@ -42,5 +43,6 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
 };
 
 export default DeleteModal;
+
 
 
