@@ -6,7 +6,7 @@ import EditModal from "./components/EditModal";
 import DeleteModal from "./components/DeleteModal";
 import InfoModal from "./components/TaskInfoModal"; 
 //this is use to show notification when task added
-import toast, { Toaster } from 'react-hot-toast';
+import  { Toaster } from 'react-hot-toast';
 import "./App.css";
 
 
