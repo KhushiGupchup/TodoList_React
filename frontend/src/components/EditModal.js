@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./modal.css"
+import toast, { Toaster } from 'react-hot-toast';
 
 function EditModal({ isOpen, onClose, task, onSave }) {
 
@@ -21,7 +22,7 @@ function EditModal({ isOpen, onClose, task, onSave }) {
   const handleSave = async () => {
     try {
       const res = await fetch(
-        "https://todolist-react-o42k.onrender.com/api/updatetasktodo/" + (task._id || task.id),
+        "http://localhost:4000/api/updatetasktodo/" + (task._id || task.id),
         {
           method: "PUT",
           headers: {
@@ -36,6 +37,8 @@ function EditModal({ isOpen, onClose, task, onSave }) {
 
       const updated = await res.json()
       onSave(updated)     // send updates
+      toast.success('Task updated Successfully');
+     
       onClose()           // close it
 
     } catch (e) {
@@ -50,7 +53,7 @@ function EditModal({ isOpen, onClose, task, onSave }) {
         <h2>Edit Task</h2>
 
         {/* name input */}
-        <input 
+        <textarea 
           value={taskname}
           onChange={(e)=>setTaskName(e.target.value)}
           placeholder="Task name"
@@ -66,6 +69,7 @@ function EditModal({ isOpen, onClose, task, onSave }) {
         <div className="modal-actions">
           <button onClick={onClose} className="cancel-btn">Cancel</button>
           <button onClick={handleSave} className="save-btn">Save</button>
+          
         </div>
 
       </div>
@@ -74,4 +78,3 @@ function EditModal({ isOpen, onClose, task, onSave }) {
 }
 
 export default EditModal
-

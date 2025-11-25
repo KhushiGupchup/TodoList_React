@@ -27,14 +27,16 @@ const truncateText = (text, maxWords = 40) => {
 const TodoList = ({ newTask, onEdit, onDelete, onInfo }) => {
   //Stores all tasks fetched from backend
   const [todos, setTodos] = useState([]);
+  //here search task will be taken
+  const [searchtask, setSearchTask] = useState("");
+
 
   /* Fetches all tasks from  backend
     Saves them into todos */
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await fetch("https://todolist-react-o42k.onrender.com/api/getalltodos"); // backend API
-
+        const response = await fetch("http://localhost:4000/api/getalltodos");//backend API to to fetch all data
         const data = await response.json();
         if (response.ok) setTodos(data);
       } catch (err) {
@@ -69,57 +71,83 @@ const TodoList = ({ newTask, onEdit, onDelete, onInfo }) => {
     <div className="todo-container">
       <div className="todo-details">
         <h2>My Tasks</h2>
+        {/*Search bar to filter task */}
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Search tasks..."
+            value={searchtask}
+            onChange={(e) => setSearchTask(e.target.value)}
+          />
+        </div>
 
+        {/*If no tasks then display this */}
         {todos.length === 0 && <p>No tasks found.</p>}
 
-        {todos.map((todo) => {
-          const name = todo.taskname || todo.taskName;
-          const status = todo.taskStatus || todo.status;
+          {/* Filter tasks based on search text, then display each task */}
+        {todos
+          .filter((todo) => {
+            const name = todo.taskname || todo.taskName || "";
+            return name.toLowerCase().includes(searchtask.toLowerCase());
+          })
+          .map((todo) => {
+            const name = todo.taskname || todo.taskName;
+            const status = todo.taskStatus || todo.status;
 
-          return (
-            <div className="todo" key={todo._id}>
-              {/* Left side */}
-              <div className="todo-left">
-                <h4>{truncateText(name)}</h4>
+            return (
+              <div className="todo" key={todo._id}>
+                {/* Left side  and task name is shorten*/}
+                <div className="todo-left">
+                  <div>
+                    <h4>{truncateText(name)}</h4>
+                  </div>
 
-                <div className="todo-info">
-                  <p
-                    className={`status ${status
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
-                  >
-                    <strong>{status}</strong>
-                  </p>
+                    {/* Status of task */}
+                  <div className="todo-info">
+                    <div className="status-info">
+                      <p
+                        className={`status ${status
+                          .toLowerCase()
+                          .replace(" ", "-")}`}
+                      >
+                        <strong>{status}</strong>
+                      </p>
+                    </div>
 
+
+                  </div>
+                </div>
+
+                {/* Right buttons and dates */}
+                <div className="card-right">
+                  {/*dates with proper formatted way*/}
                   <div className="dates">
                     <p><strong>Start:</strong> {formatDate(todo.startDate)}</p>
                     <p><strong>End:</strong> {formatDate(todo.endDate)}</p>
                   </div>
+                  {/*icons of edit,delete,info */}
+                  <div className="icons-button">
+                    <button className="card-btn edit-btn" onClick={() => onEdit(todo)}>
+                      <FontAwesomeIcon icon={faEdit} />
+                    </button>
+
+                    <button className="card-btn delete-btn" onClick={() => onDelete(todo._id)}>
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+
+                    <button className="info-btn card-btn" onClick={() => onInfo(todo)}>
+                      <FontAwesomeIcon icon={faInfoCircle} />
+                    </button>
+
+                  </div>
+
                 </div>
               </div>
-
-              {/* Right buttons */}
-              <div className="card-right">
-                <button className="card-btn edit-btn" onClick={() => onEdit(todo)}>
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
-
-                <button className="card-btn delete-btn" onClick={() => onDelete(todo._id)}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-
-                <button className="info-btn card-btn" onClick={() => onInfo(todo)}>
-                  <FontAwesomeIcon icon={faInfoCircle} />
-                </button>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
 };
 
 export default TodoList;
-
-

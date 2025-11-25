@@ -1,51 +1,264 @@
-html, body, #root {
-  height: 100%;
-  background-color: #F4ECFF; /* lavender */
-}
+
 
 .App {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* padding: 30px; */
   min-height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
 }
 
-.todo {
+.todoApp {
   display: flex;
   gap: 30px;
   width: 100%;
   align-items: flex-start;
   flex-wrap: wrap;
- 
+   
+  
 }
 
+/* Left side (task list) */
 .left {
-  flex:1;
+  flex: 1;
   min-width: 300px;
 }
 
+/* Right side (form) */
 .right {
- width: 30%;
+  width: 30%;
   min-width: 280px;
-  position: relative;
+ 
+  top: 20px; /* distance from top */
+  align-self: flex-start;
+  
 }
-body {
-  background-color: #FFFBEB; /* Pale Peach/Cream */
-  font-family: 'Segoe UI', sans-serif;
-  color: #6B4633; /* Text color */
-  margin: 0;
-  padding: 0;
+
+.search-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-left: 8px;
+  font-size: 16px;
+}
+
+.search-icon {
+  color: #555;
 }
 
 
-/* Responsive */
+
+
+
+/* Responsive: Mobile first */
 @media (max-width: 900px) {
-  .todo {
-    flex-direction: column;
-  }
-
   .left, .right {
     width: 100%;
+    min-width: unset;
+  }
+
+  .right {
+    position: relative; /* no sticky on mobile */
+    top: auto;
+  }
+  .todoApp {
+    flex-direction: column; /* Stack vertically */
+    gap: 20px;              /* spacing between form and list */
+  }
+
+  .right {
+    width: 100%;            /* Full width */
+    min-width: unset;
+    order: 0;               /* Show form first */
+    position: relative;
+    top: auto;
+  }
+
+  .left {
+    width: 100%;            /* Full width */
+    min-width: unset;
+    order: 1;               /* Show list below form */
+  }
+   /* Make the form no longer fixed, full width */
+  .Form {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
+    padding: 0 15px;
+  }
+
+  /* Make the form container stack nicely */
+  .taskform {
+    width: 100%;
+    padding: 20px 15px;
+    border-radius: 12px;
+  }
+
+  /* Make the input fields easier to interact on mobile */
+  .taskform input,
+  .taskform select {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  /* Full width for add task button */
+  .Addtask {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 1.1rem;
+  }
+
+  /* Container for the whole app */
+  .todoApp {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Left (task list) and right (form) full width */
+  .left,
+  .right {
+    width: 100%;
+    min-width: unset;
+  }
+
+  /* Stack form above list */
+  .right {
+    order: 0;
+  }
+
+  .left {
+    order: 1;
+  }
+
+  /* For each todo card */
+  .todo {
+    padding: 15px 20px;
+  }
+
+  /* Dates and icons container horizontal alignment */
+  .card-right {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  /* Dates and buttons better wrap on small screens */
+  .dates {
+    flex-wrap: wrap;
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .icons-button {
+    gap: 10px;
   }
 }
+
+
+/* Smaller mobile tweaks */
+@media (max-width: 480px) {
+  .todo-left h4 {
+    font-size: 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;          /* Allow wrapping */
+    word-break: break-word;       /* Break long words if needed */
+    overflow-wrap: break-word;    /* Ensure long words wrap */
+    overflow: hidden;             /* Prevent overflow */
+    text-overflow: clip;          
+  }
+  .status {
+    background-color: #d8c9ff;
+    color: #4b0abf;
+    padding: 4px 5px;
+    border-radius: 12px;
+   
+    text-transform: uppercase;
+    min-width: 90px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 25px;
+}
+  .status-info  strong{
+    font-size: 0.8rem;
+  }
+
+
+
+
+  .dates p {
+    font-size: 0.85rem;
+  }
+
+  .card-btn {
+    font-size: 1rem;
+    padding: 5px;
+  }
+
+  .Addtask {
+    font-size: 1rem;
+  }
+ /* .info-modal-box p{
+  height:max-content;
+  width: min-content;
+ } */
+   .App{
+    padding:10px ;
+  }
+  .todoApp {
+    flex-direction: column;
+    gap: 20px;
+    max-width: 360px;  /* max width for mobile */
+    margin: 0 auto;    /* center horizontally */
+    width: 100%;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .Form {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .taskform {
+    width: 100%;
+  }
+  .info-modal-box{
+    width: 95vw;
+    height: 50vh;
+    padding: 15px;
+  }
+  .info-modal-box p{
+    width: 100%;
+    overflow-y: scroll;
+    word-break: break-word;
+    /* height: max-content; */
+    height: 75%;
+    padding: 6px;
+
+  }
+  .modal-box{
+    padding: 6px;
+  }
+  .modal-overlay{
+    padding: 6px;
+  }
+}
+

@@ -1,7 +1,4 @@
-body {
-  background: linear-gradient(to bottom right, #f7f1ff, #faf5ff);
-  font-family: 'Segoe UI', sans-serif;
-}
+
 
 .todo-details {
   width: 100%;
@@ -16,15 +13,15 @@ body {
 
 .todo {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; /* vertical layout */
+  align-items: flex-start;
   padding: 18px 30px;
   border-radius: 16px;
   background-color: #ffffff;
   border: 1px solid #eee3ff;
   box-shadow: 0 4px 15px rgba(155, 91, 255, 0.08);
   transition: 0.25s ease;
-  gap: 40px;
+  gap: 12px;
 }
 
 .todo:hover {
@@ -32,55 +29,53 @@ body {
   box-shadow: 0 8px 22px rgba(155, 91, 255, 0.15);
 }
 
-.todo-left {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
 .todo-left h4 {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: #5924b1;
   font-weight: 700;
-}
-.todo-details > h2{
-  color: #5924b1;
+  overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+
 }
 
+.todo-details > h2 {
+  color: #5924b1;
+  text-align: center;
+}
+
+/* Status + Dates row */
 .todo-info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 80px;
-  flex-wrap: wrap;
+  gap: 20px;
+  flex-wrap: nowrap;
+ 
 }
-
-.statusinfo {
-  flex-shrink: 0;
-}
-
-.dates {
+.status-info{
   display: flex;
-  align-items: center;
-  gap: 25px;
+  justify-content: space-between;
 }
 
-.dates p {
-  margin: 0;
-  color: #7e59c5;
-  font-size: 0.9rem;
+.status-info p{
+  font-size: 1rem;
 }
 
 .status {
+  background-color: #d8c9ff;
+  color: #4b0abf;
+  padding: 4px 12px;
+  border-radius: 12px;
   font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-size: 0.9rem;
   text-transform: uppercase;
-  min-width: 110px;
+  min-width: 90px;
   text-align: center;
+  flex-shrink: 0;
+  margin-top: 25px;
 }
+
 
 .status.pending {
   background-color: #ead8ff;
@@ -97,18 +92,43 @@ body {
   color: #c2185b;
 }
 
+
+
+.dates p {
+  margin: 0;
+}
+
+/* Buttons at bottom right */
 .card-right {
+   display: flex;           /* horizontal row */
+  justify-content: space-between; /* dates left, buttons right */
+  align-items: center;     /* vertically center both sides */
+  margin-top: 12px;
+  width: 100%;
+}
+.dates {
   display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-left: auto;
+  gap: 16px;
+  font-size: 1.2rem;
+  color: #5e4baf;
+  font-weight: 600;
+  flex-wrap: wrap; 
+  max-width: 70%; 
+ 
+ 
+  
+}
+.icons-button{
+  display: flex;
+  gap: 12px;
+  
 }
 
 .card-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 6px;
   border-radius: 8px;
   font-size: 1.2rem;
 }
@@ -128,16 +148,17 @@ body {
 
 .info-btn {
   color: #FF6B6B;
-  background: none;
-  border: none;
-  cursor: pointer;
 }
 
-
-@media (max-width: 768px) {
+@media (min-width: 320px) {
+  .todo-details{
+    width:100%;
+    display: flex;
+    padding: 12px 12px;
+    
+  }
   .todo-info {
     flex-wrap: wrap;
-    justify-content: flex-start;
     gap: 10px;
   }
 
@@ -145,4 +166,5 @@ body {
     flex-wrap: wrap;
     gap: 10px;
   }
+
 }

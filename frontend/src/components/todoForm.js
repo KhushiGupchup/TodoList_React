@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./todoForm.css";
 //this is use to show notification when task added
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const TodoForm = ({ addTask }) => {
   const [taskname, setTaskName] = useState("");//Stores the task name
@@ -29,7 +29,7 @@ const TodoForm = ({ addTask }) => {
     setLoading(true); // show "Adding Task..."
     setError(null);
     //API Call to add new task
-    const response = await fetch("https://todolist-react-o42k.onrender.com/api/addtasktodo", {
+    const response = await fetch("http://localhost:4000/api/addtasktodo", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTask),
@@ -89,25 +89,7 @@ const TodoForm = ({ addTask }) => {
         <button className="Addtask" onClick={handleAddTask} disabled={loading}>
           {loading ? "Adding Task..." : "Add Task"}
         </button>
-        {/*Here for notification when task added successfully the toast library from react is used */}
-        <Toaster
-          position="top-right"
-          reverseOrder={false}
-          toastOptions={{
-            success: {
-              style: {
-                background: 'green',
-                color: 'white'
-              },
-            },
-            error: {
-              style: {
-                background: 'red',
-                color: 'white'
-              },
-            },
-          }}
-        />
+        
 
         {error && <div className="error">{error}</div>}
       </div>
@@ -116,4 +98,3 @@ const TodoForm = ({ addTask }) => {
 };
 
 export default TodoForm;
-

@@ -1,5 +1,6 @@
 import React from "react";
 import "./modal.css";
+import toast, { Toaster } from 'react-hot-toast';
 
 const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
   if (!isOpen || !taskId) return null;
@@ -7,13 +8,16 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `https://todolist-react-o42k.onrender.com/api/deletetasktodo/${taskId}`,
+        `http://localhost:4000/api/deletetasktodo/${taskId}`,
         { method: "DELETE" }
       );
 
       if (response.ok) {
         onDelete(taskId); // remove from list
+        toast.success('Task deleted Successfully');
+        
         onClose();
+        
       } else {
         console.error("Delete failed");
       }
@@ -30,6 +34,7 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
         <div className="modal-actions">
           <button className="cancel-btn" onClick={onClose}>Cancel</button>
           <button className="delete-btn" onClick={handleDelete}>Delete</button>
+         
         </div>
       </div>
     </div>
@@ -37,4 +42,3 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
 };
 
 export default DeleteModal;
-

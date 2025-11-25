@@ -16,7 +16,7 @@ const TaskInfoModal = ({isOpen, todo, onClose}) => {
 
                 {/* show task name */}
                 <p>
-                    <strong>Task:</strong> {todo.taskname || todo.taskName}
+                    <strong>Task :</strong> {todo.taskname || todo.taskName}
                 </p>
 
                 

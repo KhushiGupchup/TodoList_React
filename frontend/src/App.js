@@ -5,6 +5,8 @@ import TodoList from "./components/todoList";
 import EditModal from "./components/EditModal";
 import DeleteModal from "./components/DeleteModal";
 import InfoModal from "./components/TaskInfoModal"; 
+//this is use to show notification when task added
+import toast, { Toaster } from 'react-hot-toast';
 import "./App.css";
 
 
@@ -57,7 +59,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="todo">
+      <div className="todoApp">
         <div className="left">
           {/* Shows all tasks in left */}
           <TodoList
@@ -96,8 +98,29 @@ function App() {
         todo={taskToView}
         onClose={() => setShowInfoModal(false)}
       />
-    </div>
+      {/*Here for notification when task added successfully the toast library from react is used */}
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          toastOptions={{
+            success: {
+              style: {
+                background: 'green',
+                color: 'white'
+              },
+            },
+            error: {
+              style: {
+                background: 'red',
+                color: 'white'
+              },
+            },
+          }}
+        />
+        </div>
   );
+    
+ 
 }
 
 export default App;
