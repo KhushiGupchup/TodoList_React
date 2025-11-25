@@ -29,7 +29,7 @@ const TodoForm = ({ addTask }) => {
     setLoading(true); // show "Adding Task..."
     setError(null);
     //API Call to add new task
-    const response = await fetch("http://localhost:4000/api/addtasktodo", {
+    const response = await fetch("https://todolist-react-o42k.onrender.com/api/addtasktodo", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTask),
@@ -98,3 +98,4 @@ const TodoForm = ({ addTask }) => {
 };
 
 export default TodoForm;
+
