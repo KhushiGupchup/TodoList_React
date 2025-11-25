@@ -12,48 +12,48 @@ const TodoForm = ({ addTask }) => {
   const [loading, setLoading] = useState(false); // state for button
 
   const handleAddTask = async (e) => {
-    e.preventDefault();//Prevent page reload
-    //If any input is empty then show an alert:
-    if (!taskname || !startDate || !endDate) {
-      alert("Please fill all fields");
-      return;
-    }
-    //Created a new object to send to the backend server
-    const newTask = {
-      taskname,
-      startDate,
-      endDate,
-      taskStatus,
-    };
-    //Show loading if it takes time
-    setLoading(true); // show "Adding Task..."
-    setError(null);
-    //API Call to add new task
-    const response = await fetch("https://todolist-react-o42k.onrender.com/api/addtasktodo", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newTask),
-    });
+  e.preventDefault(); // Prevent page reload
 
-    const json = await response.json();
+  // If any input is empty then show an alert:
+  if (!taskname || !startDate || !endDate) {
+    alert("Please fill all fields");
+    return;
+  }
 
-    if (!response.ok) {
-      setError(json.error);
-    } else {
-      // Clear form
-      setTaskName("");
-      setStartDate("");
-      setEndDate("");
-      setStatus("Pending");
-      toast.success('Task Added Successfully');
-      addTask(json); //  update parent
-    }
-
-    setLoading(false); // reset button to Add task
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+  // Created a new object to send to the backend server
+  const newTask = {
+    taskname,
+    startDate,
+    endDate,
+    taskStatus,
   };
+
+  // Show loading if it takes time
+  setLoading(true); // show "Adding Task..."
+  setError(null);
+
+  // API Call to add new task using Axios
+  const response = await axios.post(
+    "https://todolist-react-o42k.onrender.com/api/addtasktodo",
+    newTask
+  );
+
+  // Axios automatically parses JSON, so use response.data
+  const json = response.data;
+
+  // Clear form
+  setTaskName("");
+  setStartDate("");
+  setEndDate("");
+  setStatus("Pending");
+  toast.success('Task Added Successfully');
+  addTask(json); // update parent
+
+  setLoading(false); // reset button to Add task
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+};
 
   return (
     <div className="Form">
@@ -98,4 +98,5 @@ const TodoForm = ({ addTask }) => {
 };
 
 export default TodoForm;
+
 
