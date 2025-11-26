@@ -27,9 +27,12 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
 
     onClose(); // close modal
 
-  } catch (error) {
-    console.error("Error deleting:", error);
-  }
+  } else {
+        console.error("Delete failed");
+      }
+    } catch (error) {
+      console.error("Error deleting:", error);
+    }
 };
 
 
@@ -51,6 +54,7 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
 };
 
 export default DeleteModal;
+
 
 
 
