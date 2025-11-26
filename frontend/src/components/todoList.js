@@ -44,7 +44,7 @@ const TodoList = ({ newTask, onEdit, onDelete, onInfo }) => {
   }
 };
 
-    };
+    
     fetchTodos();
   }, []);
 
@@ -153,5 +153,6 @@ const TodoList = ({ newTask, onEdit, onDelete, onInfo }) => {
 };
 
 export default TodoList;
+
 
 
