@@ -72,7 +72,7 @@ const handleSave = async () => {
         </select>
 
         <div className="modal-actions">
-          <button onClick={onClose} className="cancel-btn">Cancel</button>
+          <button onClick={onClose} className="cancel-button">Cancel</button>
            <button onClick={handleSave} className="save-btn" disabled={loading}>
             {loading ? "Saving Task..." : "Save"}
 
@@ -86,6 +86,7 @@ const handleSave = async () => {
 }
 
 export default EditModal
+
 
 
 
