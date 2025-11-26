@@ -22,7 +22,7 @@ const TaskInfoModal = ({isOpen, todo, onClose}) => {
                 
 
                 <div className="modal-actions">
-                    <button className="cancel-btn" onClick={onClose}>
+                    <button className="cancel-button" onClick={onClose}>
                         close
                     </button>
                 </div>
@@ -33,3 +33,4 @@ const TaskInfoModal = ({isOpen, todo, onClose}) => {
 }
 
 export default TaskInfoModal
+
