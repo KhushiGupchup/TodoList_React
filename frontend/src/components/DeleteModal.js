@@ -16,9 +16,11 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
     );
 
     // here the task delete by its id
-    onDelete(taskId); // remove from list
-    toast.success('Task deleted Successfully');
-     setLoading(false); // reset button to delete task
+ if (response.ok) {
+        onDelete(taskId); // remove from list
+        toast.success('Task deleted Successfully');
+        
+         setLoading(false); // reset button to delete task
   setTimeout(() => {
     setLoading(false);
   }, 2000);
@@ -49,6 +51,7 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
 };
 
 export default DeleteModal;
+
 
 
 
