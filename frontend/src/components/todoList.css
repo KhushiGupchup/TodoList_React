@@ -24,10 +24,10 @@
   gap: 12px;
 }
 
-.todo:hover {
+/* .todo:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 22px rgba(155, 91, 255, 0.15);
-}
+} */
 
 .todo-left h4 {
   margin: 0;
@@ -135,7 +135,7 @@ display: -webkit-box;
 
 .card-btn:hover {
   background-color: rgba(106, 31, 191, 0.12);
-  transform: scale(1.15);
+  
 }
 
 .edit-btn {
@@ -156,6 +156,7 @@ display: -webkit-box;
     display: flex;
     padding: 12px 12px;
     
+    
   }
   .todo-info {
     flex-wrap: wrap;
@@ -165,6 +166,9 @@ display: -webkit-box;
   .dates {
     flex-wrap: wrap;
     gap: 10px;
+  }
+  .todo{
+    gap:0;
   }
 
 }

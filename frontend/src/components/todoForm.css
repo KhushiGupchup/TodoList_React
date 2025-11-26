@@ -50,7 +50,7 @@ h1 {
 .taskform input:focus,
 .taskform select:focus {
   border-color: #7B2CBF;
-  box-shadow: 0 0 6px rgba(123, 44, 191, 0.45);
+  box-shadow: 0 0 9px rgba(56, 0, 104, 0.45);
 }
 
 /* Button */
@@ -69,5 +69,5 @@ h1 {
 
 .Addtask:hover {
   background-color: #6A21A8;
-  transform: translateY(-3px);
+  
 }
