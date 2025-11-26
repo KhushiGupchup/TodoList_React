@@ -146,6 +146,7 @@ textarea{
    display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap:12px;
   
   
 }
@@ -182,3 +183,4 @@ textarea{
 .info-cancel-btn:hover {
   background-color: #e14f4f;
 }
+
