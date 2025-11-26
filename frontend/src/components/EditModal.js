@@ -7,6 +7,7 @@ function EditModal({ isOpen, onClose, task, onSave }) {
 
   const [taskname, setTaskName] = useState("")
   const [status, setStatus] = useState("")
+  const [loading, setLoading] = useState(false); // state for button
 
   // when task changes just fill the fields
   useEffect(() => {
@@ -21,6 +22,7 @@ function EditModal({ isOpen, onClose, task, onSave }) {
   }
 
 const handleSave = async () => {
+  setLoading(true); // show "Saving Task..."
   try {
     // API call to update the task using Axios
     const res = await axios.put(
@@ -35,6 +37,10 @@ const handleSave = async () => {
     const updated = res.data;
 
     onSave(updated);     // send updates
+    setLoading(false); // reset button to Add task
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     toast.success('Task updated Successfully');
    
     onClose();           // close it
@@ -67,7 +73,10 @@ const handleSave = async () => {
 
         <div className="modal-actions">
           <button onClick={onClose} className="cancel-btn">Cancel</button>
-          <button onClick={handleSave} className="save-btn">Save</button>
+           <button onClick={handleSave} className="save-btn" disabled={loading}>
+            {loading ? "Saving Task..." : "Save"}
+
+          </button>
           
         </div>
 
@@ -77,6 +86,7 @@ const handleSave = async () => {
 }
 
 export default EditModal
+
 
 
 
