@@ -4,9 +4,11 @@ import toast from 'react-hot-toast';
 import axios from "axios";
 
 const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
+   const [loading, setLoading] = useState(false); // state for button
   if (!isOpen || !taskId) return null;
 
   const handleDelete = async () => {
+     setLoading(true); // show "deleting Task..."
   try {
     // API call to delete the task using Axios
     const response = await axios.delete(
@@ -16,6 +18,10 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
     // here the task delete by its id
     onDelete(taskId); // remove from list
     toast.success('Task deleted Successfully');
+     setLoading(false); // reset button to delete task
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
 
     onClose(); // close modal
 
@@ -31,8 +37,10 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
         <h2>Delete Confirmation</h2>
         <p>Are you sure you want to delete this task?</p>
         <div className="modal-actions">
-          <button className="cancel-btn" onClick={onClose}>Cancel</button>
-          <button className="delete-btn" onClick={handleDelete}>Delete</button>
+          <button className="cancel-button" onClick={onClose}>Cancel</button>
+          <button className="delete-button" onClick={handleDelete} disabled={loading}>
+            {loading ? "Deleting Task..." : "Delete"}</button>
+         
          
         </div>
       </div>
@@ -41,6 +49,7 @@ const DeleteModal = ({ isOpen, onClose, taskId, onDelete }) => {
 };
 
 export default DeleteModal;
+
 
 
 
